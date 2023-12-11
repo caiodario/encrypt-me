@@ -1,4 +1,4 @@
-# Encrypt.me - Criptografe e Descriptografe Arquivos
+# encrypt.me - Criptografe e Descriptografe Arquivos
 
 O Encrypt.me é uma aplicação web que permite criptografar e descriptografar arquivos com segurança. Esta aplicação foi desenvolvida usando Next.js no lado do cliente e Node.js no lado do servidor para fornecer uma maneira fácil e segura de proteger seus arquivos.
 
