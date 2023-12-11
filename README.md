@@ -31,7 +31,11 @@ A aplicação estará disponível em http://localhost:3000.
 ##  Variáveis de Ambiente
 O projeto utiliza variáveis de ambiente para configurar a criptografia. Certifique-se de criar um arquivo .env.local na raiz do projeto com as seguintes variáveis:
 
-- SECRET_KEY: A chave secreta usada para criptografar e descriptografar arquivos.
+- CRYPTO_KEY: A chave secreta usada para criptografar e descriptografar arquivos.
+- CRYPTO_IV: O vetor de inicialização usado para criptografar e descriptografar arquivos.
+
+Você pode gerar chaves para sua utilização através da utils disponível no projeto através do comando
+   ```node utils/generateKeys.ts```
 
 ## Uso
 Acesse a aplicação em http://localhost:3000.

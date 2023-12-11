@@ -4,17 +4,34 @@ import Header from '../components/Header';
 import ActionButtons from '../components/ActionButtons';
 import UploadArea from '../components/UploadArea';
 import Footer from '../components/Footer';
+import Messages from '../components/Messages';
+
+type MessageInfoType = {
+  show: boolean;
+  text: string;
+  type: 'success' | 'error';
+};
 
 const Home: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  
+  const [messageInfo, setMessageInfo] = useState<MessageInfoType>({ show: false, text: '', type: 'success' });
+
+  const showMessage = (text: string, type: 'success' | 'error') => {
+    setMessageInfo({ show: true, text, type });
+    setTimeout(() => setMessageInfo({ show: false, text: '', type }), 3000);
+  };
+
   const handleFileSelect = (file: File) => {
     setSelectedFile(file);
   };
 
   const handleEncrypt = async () => {
-    if (selectedFile) {
-     const formData = new FormData();
+
+    if (!selectedFile) {
+      showMessage('Erro na Criptografia - Nenhum arquivo selecionado', 'error');
+      return; 
+    } else {
+      const formData = new FormData();
       formData.append('file', selectedFile);
 
       try {
@@ -37,20 +54,49 @@ const Home: React.FC = () => {
 
           window.URL.revokeObjectURL(url);
           document.body.removeChild(a);
+
+          showMessage('Sucesso na Criptografia', 'success');
       } catch (error) {
-        console.error('Erro ao criptografar o arquivo:', error);
+        showMessage('Erro na criptografia', 'error');
       }
-    } else {
-      console.error('Nenhum arquivo selecionado');
     }
   };
 
   const handleDecrypt = async () => {
-    if (selectedFile) {
-      // Lógica para descriptografar o arquivo
-     } else {
-       console.error('Nenhum arquivo selecionado');
-     }
+    if (!selectedFile) {
+      showMessage('Erro na Descriptografia - Nenhum arquivo selecionado', 'error');
+      return;
+    } else {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+  
+      try {
+        const response = await fetch('/api/decrypt', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (!response.ok) {
+          throw new Error('Erro na resposta do servidor');
+        }
+  
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'decrypted.txt';
+        document.body.appendChild(a);
+        a.click();
+  
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        showMessage('Sucesso na Descriptografia', 'success');
+
+      } catch (error) {
+        showMessage('Erro na Descriptografia', 'error');
+      }
+    }
   };
 
   return (
@@ -65,6 +111,7 @@ const Home: React.FC = () => {
         <main>
           <UploadArea onFileUpload={handleFileSelect} />
           <ActionButtons onEncrypt={handleEncrypt} onDecrypt={handleDecrypt} />
+          <Messages info={messageInfo} /> 
           <Footer />
         </main>
       </div>

@@ -11,6 +11,9 @@ export const config = {
     }
 };
 
+const fixedKey = Buffer.from(process.env.CRYPTO_KEY || '', 'hex');
+const fixedIV = Buffer.from(process.env.CRYPTO_IV || '', 'hex');
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         const form = new IncomingForm();
@@ -31,10 +34,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             try {
                 const filePath = singleFile.filepath;
                 const fileContent = readFileSync(filePath, 'utf-8');
-                const encryptedData = encryptText(fileContent);
+                const encryptedData = encryptText(fileContent, fixedKey, fixedIV);
 
                 const tempFilePath = join(tmpdir(), 'encrypted.txt');
-                writeFileSync(tempFilePath, encryptedData.content, 'utf-8');
+                writeFileSync(tempFilePath, encryptedData, 'utf-8');
+                console.log('Arquivo temporário criado em: ', tempFilePath)
                 res.setHeader('Content-Disposition', 'attachment; filename=encrypted.txt')
                 res.setHeader('Content-Type', 'text/plain');
 
