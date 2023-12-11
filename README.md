@@ -1,40 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Encrypt.me - Criptografe e Descriptografe Arquivos
 
-## Getting Started
+O Encrypt.me é uma aplicação web que permite criptografar e descriptografar arquivos com segurança. Esta aplicação foi desenvolvida usando Next.js no lado do cliente e Node.js no lado do servidor para fornecer uma maneira fácil e segura de proteger seus arquivos.
 
-First, run the development server:
+## Como Funciona
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Criptografar Arquivos**: Faça o upload de um arquivo de texto (por exemplo, um arquivo .txt) para criptografá-lo. O arquivo criptografado será disponibilizado para download.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Descriptografar Arquivos**: Faça o upload de um arquivo criptografado para descriptografá-lo. O arquivo descriptografado será disponibilizado para download. (ATUALMENTE EM DESENVOLVIMENTO)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Pré-requisitos
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Certifique-se de ter Node.js e npm (ou yarn) instalados na sua máquina.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Configuração do Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone este repositório:
 
-## Learn More
+   ```git clone https://github.com/seu-usuario/encrypt-me.git```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navegue até a pasta do projeto:
+    ```cd encrypt-me```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Instale as dependências do projeto:
+    ```npm install```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Inicie o servidor de desenvolvimento:
+    ```npm run dev```
 
-## Deploy on Vercel
+A aplicação estará disponível em http://localhost:3000.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##  Variáveis de Ambiente
+O projeto utiliza variáveis de ambiente para configurar a criptografia. Certifique-se de criar um arquivo .env.local na raiz do projeto com as seguintes variáveis:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- SECRET_KEY: A chave secreta usada para criptografar e descriptografar arquivos.
+
+## Uso
+Acesse a aplicação em http://localhost:3000.
+
+Faça o upload de um arquivo para criptografá-lo ou descriptografá-lo.
+
+Baixe o arquivo criptografado ou descriptografado, conforme necessário.
+
+## Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+
+## Licença
+Este projeto é licenciado sob a MIT License - veja o arquivo LICENSE.md para detalhes.
+
+Desenvolvido por [Caio Dario](https://github.com/caiodario)
+
