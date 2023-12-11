@@ -47,32 +47,7 @@ const Home: React.FC = () => {
 
   const handleDecrypt = async () => {
     if (selectedFile) {
-      const formData = new FormData();
-       formData.append('file', selectedFile);
- 
-       try {
-         const response = await fetch('/api/decrypt', {
-           method: 'POST',
-           body: formData,
-           });
- 
-           if (!response.ok) {
-             throw new Error('Erro na resposta do servidor');
-           }
- 
-           const blob = await response.blob();
-           const url = window.URL.createObjectURL(blob);
-           const a = document.createElement('a');
-           a.href = url;
-           a.download = 'decrypted.txt';
-           document.body.appendChild(a);
-           a.click();
- 
-           window.URL.revokeObjectURL(url);
-           document.body.removeChild(a);
-       } catch (error) {
-         console.error('Erro ao descriptografar o arquivo:', error);
-       }
+      // Lógica para descriptografar o arquivo
      } else {
        console.error('Nenhum arquivo selecionado');
      }
