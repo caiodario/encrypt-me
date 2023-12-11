@@ -15,7 +15,6 @@ Certifique-se de ter Node.js e npm (ou yarn) instalados na sua máquina.
 ## Configuração do Projeto
 
 1. Clone este repositório:
-
    ```git clone https://github.com/seu-usuario/encrypt-me.git```
 
 2. Navegue até a pasta do projeto:
