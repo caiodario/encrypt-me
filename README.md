@@ -34,7 +34,7 @@ O projeto utiliza variáveis de ambiente para configurar a criptografia. Certifi
 - CRYPTO_KEY: A chave secreta usada para criptografar e descriptografar arquivos.
 - CRYPTO_IV: O vetor de inicialização usado para criptografar e descriptografar arquivos.
 
-Você pode gerar chaves para sua utilização através da utils disponível no projeto através do comando
+Você pode gerar chaves para sua utilização através da utils disponível no projeto através do comando:
    ```node utils/generateKeys.ts```
 
 ## Uso
